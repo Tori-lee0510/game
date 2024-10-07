@@ -1,8 +1,10 @@
+import { heziss } from "./heziss.js";
+
 function myNameVS(teamNames, teamFunctions) {
   const counts = {};
   let stop = false;
 
-  teamNames.forEach(name => counts[name] = 0);
+  teamNames.forEach((name) => (counts[name] = 0));
   const stopSignal = () => stop;
 
   setTimeout(() => {
@@ -21,7 +23,10 @@ function myNameVS(teamNames, teamFunctions) {
           }
         }, stopSignal);
       } catch (e) {
-        console.error(`${teamNames[index]} 님의 함수에서 에러가 발생했습니다:`, e);
+        console.error(
+          `${teamNames[index]} 님의 함수에서 에러가 발생했습니다:`,
+          e
+        );
       } finally {
         setTimeout(() => resolve(), 5000);
       }
@@ -29,7 +34,7 @@ function myNameVS(teamNames, teamFunctions) {
   });
 
   Promise.all(promises).then(() => {
-    teamNames.forEach(name => {
+    teamNames.forEach((name) => {
       console.log(`${name} 님은 ${counts[name]}번 이름을 출력했습니다.`);
     });
     const winner = teamNames.reduce((prev, current) =>
@@ -38,3 +43,5 @@ function myNameVS(teamNames, teamFunctions) {
     console.log(`승자는 ${winner} 님입니다!`);
   });
 }
+
+myNameVS(["혜지"], [heziss]);
